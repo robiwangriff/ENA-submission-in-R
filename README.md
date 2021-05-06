@@ -19,7 +19,7 @@ The functions broadly address the use of R to:
 7. Submitting xmls to ENA (the example only submits to the dev server for obvious reasons)
 8. Populating the environmental metadata file with ENA accession numbers, to enable reproducible coding of subsequent analyses.
 
-# Useage
+# Usage
 You will of course need an [ENA account](https://www.ebi.ac.uk/ena/submit/sra/#home) to submit sequences. 
 
 Clone this repository if you are a github user, or click the green button to download a zipped file. You may need to modify paths in the example file depending on where you put the extracted dir, and possibly your preference for R/Rstudio etc. Then work through the [ena_subm_example.R](https://github.com/robiwangriff/ENA-submission-in-R/blob/main/ena_subm_example.R) file, which loads the functions contained in [ena_subm_fxns.R](https://github.com/robiwangriff/ENA-submission-in-R/blob/main/ena_subm_fxns.R) via a source() command. 
