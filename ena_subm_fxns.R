@@ -132,18 +132,18 @@ return(data.frame(md5f,md5r,stringsAsFactors=FALSE))}
 # alternative such as winscp.
 
 
-r_upload<-function(f_names,r_names,ena_upload_dir,ebi_usr,ebi_pass){
+r_upload<-function(f_names,r_names,ena_upload_dir,ena_user,ena_passwd){
 require(RCurl)
 
 #make a vector containing all the files you want to upload
-files2upload_A<-c(f_names,r_names,paste0(f_names,".md5"),paste0(r_names,".md5"))
+files2upload_A<-c(f_names,r_names)
 files2upload_B<-paste0(ena_upload_dir,files2upload_A)
 
 files2upload=data.frame(files2upload_A, files2upload_B, stringsAsFactors = F)
 
 for(i in 1:nrow(files2upload)){
 ftpUpload(files2upload[i,2],
-paste0("ftp://",ebi_usr,":",ebi_pass,"@webin.ebi.ac.uk/",files2upload[i,1]))
+paste0("ftp://",ena_user,":",ena_passwd,"@webin.ebi.ac.uk/",files2upload[i,1]))
   }
 
 }
@@ -289,7 +289,7 @@ make_reads_info<-function(sample_alias,f_names,r_names,md5f,md5r,instrument_mode
 library_source="METAGENOMIC",library_selection="PCR",library_strategy="AMPLICON",
 insert_size="300",library_name="16S"){
 
-  dfs<-data.frame("sample_alias"=sample_alias,"instrument_model"=instrument_model,
+dfs<-data.frame("sample_alias"=sample_alias,"instrument_model"=instrument_model,
 "library_source"=library_source,"library_selection"=library_selection,
 "library_strategy"=library_strategy,"insert_size"=insert_size,"forward_file_name"=f_names,
 "forward_file_md5"=md5f,"reverse_file_name"=r_names,"reverse_file_md5"=md5r,"library_name"=library_name,stringsAsFactors=FALSE )
@@ -378,12 +378,13 @@ tit = newXMLNode("TITLE",proj_title,parent = proj)
 desc=newXMLNode("DESCRIPTION",proj_desc,parent = proj)
 sub_proj<-newXMLNode("SUBMISSION_PROJECT",parent = proj)
 seq_proj<-newXMLNode("SEQUENCING_PROJECT",parent = sub_proj)
+return(project)
 }
 
 ###########################################################################################
 #function:create_proj_subm_xml
 
-function<-create_proj_subm_xml(rel_date){
+create_proj_subm_xml<-function(rel_date){
 	subm_proj = newXMLDoc()
 	root = newXMLNode("SUBMISSION", doc = subm_proj)
 	# WRITE XML NODES AND DATA
@@ -392,20 +393,22 @@ function<-create_proj_subm_xml(rel_date){
 	add=newXMLNode("ADD",parent = action)
 	action_1 = newXMLNode("ACTION",parent = actions)
 	hold<-newXMLNode("HOLD",attrs =c(HoldUntilDate= rel_date),parent = action_1)
+return(subm_proj)
 }
 
 ########################################################################################
 #function: create_SRE_subm_xml
 	
-	#create submision xml #actions the submission, can be used to register SAMPLES,RUNS, and EXPERIMENTS
+#create submision xml #actions the submission, can be used to register SAMPLES,RUNS, and EXPERIMENTS
 
-	create_SRE_subm_xml<-function(){
-      subm_samp = newXMLDoc()
+create_SRE_subm_xml<-function(){
+     subm_samp = newXMLDoc()
 	root = newXMLNode("SUBMISSION", doc = subm_samp)
 	# WRITE XML NODES AND DATA
 	actions = newXMLNode("ACTIONS",parent = root)
 	action = newXMLNode("ACTION",parent = actions)
 	add=newXMLNode("ADD",parent = action)
+return(subm_samp)
 	}
 
 #########################################################################################

@@ -1,7 +1,5 @@
-##R Scripts for submitting sequences to ebi
+##Worked example for submitting sequences to the ENA
 
-#############################################################################
-#Functions to be pasted found at bottom of this script, or in functions_ena_submit file.
 
 #The following worked example is for processing two amplicons from the same sample (eg 16S & ITS). 
 #Will be simpler for one amplicon.
@@ -10,6 +8,7 @@
 #1. Load and define some variables
 ####################################################################################
 
+	#
 	#Load environmental and sequence associated metadata (we call it an "env" file)
 	#We'll update this as we go along and populate with various submission related fields
 	#After doing this a few times it will become apparent that it is good practice
@@ -17,37 +16,68 @@
 	
 	###############
 	#Read env
+	#setwd("..../ENA-submission-in-R/")#include your path if neccesary
 	
-	env<-read.csv("//my_proj/env.csv",stringsAsFactors=F,check.names=F)
+	env<-read.csv("env_metadata.csv",stringsAsFactors=F,check.names=F)
+
+	#Load functions
+
+	source("ena_subm_fxns.R") 
 	
 	##############
-	#Define directories containg reads (possibly your sequencer output dir).
+	#Define directories which contain reads (eg path to your sequencer output dir).
 	#May well contain more fastq files than you actually want to submit.
 	
-	seq_dir_16S<-"//nerclactdb/Projects/projects1/NEC06211 SEEGSLIP/Data/Molecular/Fastqs/AlpineSeegslipYr216s/Alpine16s/"
-	seq_dir_ITS<-"//nerclactdb/Projects/projects1/NEC06211 SEEGSLIP/Data/Molecular/Fastqs/AlpineSeegslipYr2ITS/"
+	seq_dir_16S<-"fastq_files_from_sequencer/16S_runs/"
+	seq_dir_ITS<-"fastq_files_from_sequencer/ITS_runs/"
+
 	
 	##############
-	#Define local ENA upload directory (where you'll put only the fastq files you want to submit - eg a project folder)
+	# Create a local ENA submission directory where you can transfer reads to be uploaded
+	# and any other outputs from the submission process
+
+	dir.create("ENA_submission/")# here we are using our working dir. You may want to specify a more relevant path eg a project folder
+	
+	#Define folder paths where you'll transfer only the fastq files you want to submit - 
 	#This directory will be created by the function - it just needs a path here
 
-	upload_dir_16S<-"//nercwlctdb/Projects/PROJECTS1/NEC05734/Data/Vent/EBI_submission_2/16S_upload_fastqs/"
-	upload_dir_ITS<-"//nercwlctdb/Projects/PROJECTS1/NEC05734/Data/Vent/EBI_submission_2/ITS_upload_fastqs/"
+	upload_dir_16S<-"ENA_submission/16S_upload_fastqs/"
+	upload_dir_ITS<-"ENA_submission/ITS_upload_fastqs/"
 
 	#############
-	#ENA webin login info
+	#Define ENA webin login info
+	#get account if needs https://www.ebi.ac.uk/ena/submit/sra/#registration
 	
-	ebi_usr<-"webin-xxxxx"
-	ebi_pass<-"pxxssxxxd"
+	#for security, enter YOUR details directly in terminal
+
+	ena_user<-"Webin-xxxxx"
+	ena_passwd<-"pxxssxxxd"
 
 	#############
-	#Broad details about project
-	#Here these are in conveniently found in the env file (or at least some fields which fit the bill), 
+	#Define broad details about project
+	#In the example data these are in conveniently found in the env file (or at least some fields which fit the bill), 
 	#but you could also define them here: eg proj_name<-"Microbial communities of habitat X" 
 
 	proj_name<-env$"Project name"[1]
 	proj_title<-env$"sample_title"[1]
 	proj_desc<-env$"sample_description"[1]
+
+	#############
+	#Define other key variables here?
+
+	#The most important field which links everything is the sample_alias, ie the unique sample ID.
+	#In the example env file this is (somewhat clumsily):
+
+	sample_alias=env$"Sample ID for sequencing"
+
+	#The other important columns are the fastq.gz filenames associated with each sample.
+	#If your sequencer appends additional fields (ours does) and you dont actually know
+	#the fastq filenames, the functions below (2a) should sort this. But you still need the
+	#sample IDs as submitted to the sequencer.
+
+	#In the example env file, since we are dealing with both 16S and ITS amplicon assays
+	#which were carried out on different runs, there are two columns
+	#env$"Sequence ID 16S" and env$"Sequence ID ITS". Make sure such information is present in your env file
 
 ####################################################################################################################
 #2. Transfer fastq files from seq output directory to local upload directory
@@ -98,15 +128,15 @@
 #recomend using a different file transfer approach (eg winscp), and using your R session for generating the md5 codes (next step)
 
 
-	r_upload(f_r_reads_16S[,1],f_r_reads_16S[,2],upload_dir_16S,ebi_usr,ebi_pass)
-	r_upload(f_r_reads_ITS[,1],f_r_reads_ITS[,2],upload_dir_ITS,ebi_usr,ebi_pass)
+	r_upload(f_r_reads_16S[,1],f_r_reads_16S[,2],upload_dir_16S,ena_user,ena_passwd)
+	r_upload(f_r_reads_ITS[,1],f_r_reads_ITS[,2],upload_dir_ITS,ena_user,ena_passwd)
 
 
 #########################################################################################################
 #4. Create md5 checksum codes for fastq files
 #########################################################################################################
 
-#An md5checksum code is required in the RUN/EXP submission step for each fastq read to check file integrity after transfer
+#An md5 checksum code is required in the RUN/EXP submission step for each fastq read to check file integrity after transfer
 #The following generates them within R, using the f and r fastq name field to reference.
 #You should then add these to your env file for completeness.
 #Note md5 generating using the function below is slow (can be a few seconds per file, depending on size).
@@ -222,7 +252,7 @@ samp_info$"UNIT_geographic location (elevation)"<- "m"           #unit options:m
 	#function: create_sample_xml
 
 	samples_xml<-create_sample_xml(samp_info=samp_info,center_name="UKCEH",ERC_checklist="ERC000022")
-	saveXML(samples_xml, file="samples.xml")
+	saveXML(samples_xml, file="ENA_submission/samples.xml")
 	
 
 #################################################################################################################
@@ -246,13 +276,12 @@ samp_info$"UNIT_geographic location (elevation)"<- "m"           #unit options:m
 	#It is barely a function, but conveniently fills in a few fields. Check them!
 
 	reads_info_16S<-make_reads_info(library_name="16S",sample_alias=env$"Sample ID for sequencing",
-	f_names=env$"16Sf_rn",r_names=env$"16Sr_rn",md5f=env$"md5_16Sf",md5r=env$"md5_16Sr")
+	f_names=env$"16Sf",r_names=env$"16Sr",md5f=env$"md5_16Sf",md5r=env$"md5_16Sr")
 
 	reads_info_ITS<-make_reads_info(library_name="ITS",sample_alias=env$"Sample ID for sequencing",
-	f_names=env$"ITSf_rn",r_names=env$"ITSr_rn",md5f=env$"md5_ITSf",md5r=env$"md5_ITSr")
+	f_names=env$"ITSf",r_names=env$"ITSr",md5f=env$"md5_ITSf",md5r=env$"md5_ITSr")
 
 	#No need for "_16S" if only one amplicon
-
 
 	#Important: Need to add exp_alias and run_alias fields now created in reads_info file
 	# to the env file. This will later allow matching generated EBI accessions to samples 
@@ -266,15 +295,12 @@ samp_info$"UNIT_geographic location (elevation)"<- "m"           #unit options:m
 	
 	reads_info<-rbind(reads_info_16S,reads_info_ITS)
 
-
-
-
 	#############################################################################
 	#b. Create Experiment.xml from reads_info
 	#function: create_exp_xml
 	
 	exp_xml<-create_exp_xml(reads_info=reads_info,proj_name=proj_name,title=proj_title)
-	saveXML(exp_xml, file="submit_experiment.xml")
+	saveXML(exp_xml, file="ENA_submission/experiment.xml")
 
 
 	#############################################################################
@@ -282,8 +308,7 @@ samp_info$"UNIT_geographic location (elevation)"<- "m"           #unit options:m
 	#function: create_run_xml
 
 	run_xml<-create_run_xml(reads_info=reads_info,center_name="UKCEH")
-	saveXML(run_xml, file="submit_run.xml")
-
+	saveXML(run_xml, file="ENA_submission/run.xml")
 
 
 #########################################################################################################
@@ -301,8 +326,8 @@ samp_info$"UNIT_geographic location (elevation)"<- "m"           #unit options:m
 	##############################################################
 	#Create Project xml with basic title and description of project
 
-	proj_xml<-create_proj_xml(proj_name,proj_title,proj_desc)
-	saveXML(proj_xml, file="project.xml")
+	proj_xml<-create_proj_xml(proj_name="blah",proj_title,proj_desc)
+	saveXML(proj_xml, file="ENA_submission/project.xml")
 
 	##################################################################################################
 	#Create submission xml for the project registration, to tell ENA to action the project submission
@@ -311,7 +336,7 @@ samp_info$"UNIT_geographic location (elevation)"<- "m"           #unit options:m
 	rel_date<-"2021-06-06"
 
 	subm_proj_xml<-create_proj_subm_xml(rel_date)
-	saveXML(subm_proj_xml, file="submit_project.xml")
+	saveXML(subm_proj_xml, file="ENA_submission/project_submit.xml")
 
 
 	######################################################################################
@@ -320,14 +345,14 @@ samp_info$"UNIT_geographic location (elevation)"<- "m"           #unit options:m
 	#
 
 	require(httr)
-	ena_user="******"
-	ena_passwd="******"
-	project_xml="project.xml"
-	subm_proj_xml="submit_project.xml"
+	#ena_user="******"
+	#ena_passwd="******"
+	project_xml="ENA_submission/project.xml"
+	project_submit_xml="ENA_submission/project_submit.xml"
 	url<-"https://wwwdev.ebi.ac.uk/ena/submit/drop-box/submit/"
 
 	proj_receipt_xml <- POST(url,
-	body=list( SUBMISSION=upload_file( subm_proj_xml),
+	body=list( SUBMISSION=upload_file(project_submit_xml),
 	PROJECT=upload_file( project_xml)),
 	authenticate(ena_user,ena_passwd))
 
@@ -336,35 +361,40 @@ samp_info$"UNIT_geographic location (elevation)"<- "m"           #unit options:m
 	headers(proj_receipt_xml)
 	content(proj_receipt_xml)
 	xmlParse(proj_receipt_xml) # check for errors
+	
+	saveXML(xmlParse(proj_receipt_xml), file="ENA_submission/RECEIPT_project.xml")
+
+
 
 	######################################################################################
 	##b. Register samples
 	
 	#send SAMPLE xmls to ena
-	
 	#make a submission xml to action the submission. This can also be used for actioning RUN and EXP submissions
 	
 	subm_SRE<-create_SRE_subm_xml()
-	saveXML(subm_SRE, file="submit_SRE.xml")
+	saveXML(subm_SRE, file="ENA_submission/SRE_submit.xml")
 
 	#send sample xml and submission xml to ena
 
-	samples_xml="samples.xml"
-	subm_SRE_xml="submit_SRE.xml"
+	samples_xml="ENA_submission/samples.xml"
+	subm_SRE_xml="ENA_submission/SRE_submit.xml"
 
 	samp_receipt_xml <- POST(url,
-	body=list( SUBMISSION=upload_file( subm_samples_xml),
-	SAMPLE=upload_file( samples_xml)),
+	body=list( SUBMISSION=upload_file(subm_SRE_xml),
+	SAMPLE=upload_file(samples_xml)),
 	authenticate(ena_user,ena_passwd))
 
 	xmlParse(samp_receipt_xml ) # check for errors
+      saveXML(xmlParse(samp_receipt_xml), file="ENA_submission/RECEIPT_samples.xml")
 
 
 	######################################################################################
 	##c. Register EXP and RUN xmls 
 
-	exp_xml="submit_experiment.xml"
-	subm_SRE_xml="submit_SRE.xml"
+	run_xml="ENA_submission/run.xml"
+	exp_xml="ENA_submission/experiment.xml"
+	subm_SRE_xml="ENA_submission/SRE_submit.xml"
 
 	RE_receipt_xml <- POST(url,
 	body=list( SUBMISSION=upload_file( subm_SRE_xml),
@@ -373,6 +403,7 @@ samp_info$"UNIT_geographic location (elevation)"<- "m"           #unit options:m
 	authenticate(ena_user,ena_passwd))
 
 	xmlParse(RE_receipt_xml) # check for errors
+	saveXML(xmlParse(RE_receipt_xml), file="ENA_submission/RECEIPT_run_experiment.xml")
 
 
 ########Submit your sequences to ENA
@@ -409,8 +440,7 @@ env$run_acc_ITS<-RE_df[match(env$run_alias_ITS,RE_df$run_alias),]$run_acc
 env$exp_acc_ITS<-RE_df[match(env$exp_alias_ITS,RE_df$exp_alias),]$exp_acc 
 
 
-
-#write.csv(env,"env_with_seq_accessions.csv")
+#write.csv(env,"ENA_submission/env_with_seq_accessions.csv")
 
 #########################################################################################################
 #9. Do some reproducible analyses
@@ -418,7 +448,7 @@ env$exp_acc_ITS<-RE_df[match(env$exp_alias_ITS,RE_df$exp_alias),]$exp_acc
 
 #Get fastq files from ENA https://www.ebi.ac.uk/ena/browser/view/PRJN.....
 
-#env<-read.csv(env_with_seq_accessions.csv)
+#env<-read.csv(ENA_submission/env_with_seq_accessions.csv)
 
 library(DADA2)
 library(vegan)
