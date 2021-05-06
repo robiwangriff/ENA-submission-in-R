@@ -1,7 +1,7 @@
 # ENA-submission-in-R
 Scripts under development for submission of amplicon sequence data to the ENA using R.
 
-# Why submit to ENA in R?
+# Why submit to ENA using R?
 Submitting sequences to the ENA is quite an involved process, and it can take time. There are a variety of ways to submit, but I'm unaware of any routines for doing it in R. Since most researchers working on amplicon sequence data are familiar with working in the R environment, it makes sense to have scripts available to submit directly from R.
 Personally, I never really know if I'm submitting "correctly", so making the code available here allows me to reproduce (and hopefully correct) any mistakes. It could potentially be packaged  - contribs and feedback most welcome.
 
@@ -20,11 +20,11 @@ The functions use R to:
 8. Populating the environmental metadata file with ENA accession numbers, to enable reproducible coding of subsequent analyses.
 
 # Usage
-You will of course need an [ENA account](https://www.ebi.ac.uk/ena/submit/sra/#home) to submit sequences. 
+You will need an [ENA account](https://www.ebi.ac.uk/ena/submit/sra/#home) to submit sequences. 
 
 Clone this repository if you are a github user, or click the green button to download the zipped directory. You may need to modify paths in the example file depending on where you put the extracted dir, and possibly your preference for R/Rstudio etc. Then work through the [ena_subm_example.R](https://github.com/robiwangriff/ENA-submission-in-R/blob/main/ena_subm_example.R) file, which loads the functions contained in [ena_subm_fxns.R](https://github.com/robiwangriff/ENA-submission-in-R/blob/main/ena_subm_fxns.R) via a source() command. 
 
-You should get a pretty speedy submission to the ENA dev server using the example files, but be under no illusion. Copying large files even locally takes time, as does the md5 generation - so be prepared to forfeit your R session for a bit whilst things are running with "real" datasets. Some progress bars would be useful. Additionally, since the user decides what data to upload, there is of course some manual work involved in selecting your relevant metadata fields and populating the sample info file according to the MixS checklists. 
+You should get a pretty speedy submission to the ENA dev server using the example files, but more and larger files will take longer. Copying large files even locally takes time, as does the md5 generation - so be prepared to forfeit your R session for a bit whilst things are running with "real" datasets. Some progress bars would be useful. Additionally, since the user decides what data to upload, there is of course some manual work involved in selecting relevant metadata fields and populating the sample info file according to the MixS checklists. 
 
 After submission of the xmls a receipt is returned indicating whether the submission is succesful. You may get failed test submissions because the project/samples/runs have already been registered (from your previous attempt)...even with the dev server. Though the dev server is supposed to be purged every day, things seem to hang around for a bit and there doesn't appear to be a way of purging it yourself. On the plus side, this may mean your submission attempt to the dev server has kind of worked.
 
