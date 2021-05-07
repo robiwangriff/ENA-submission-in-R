@@ -11,13 +11,13 @@ This repository contains a set of R functions to submit amplicon sequences, such
 The functions use R to:
 
 1. Transfer "fastqs relevant to a study" from a sequencing output dir (eg the MiSeq dump) to a local submission dir (eg a project/paper dir), based on samples present in an environmental metadata file.
-2. Generating md5 checksums for the fastqs
-3. Uploading fastqs to the ENA (though R routines not recomended for large numbers of files)
-4. Creating a sample submission dataframe, based on the user provided environmental metadata file, and validating against relevant ENA MixS checklists
-5. Linking samples to fastq reads (multiple amplicon assays possible) by constructing ENA EXPERIMENT and RUN files
-6. Converting dataframes to xml format required by the ENA for programatic submission
-7. Submitting xmls to ENA (the example only submits to the dev server for obvious reasons)
-8. Populating the environmental metadata file with ENA accession numbers, to enable reproducible coding of subsequent analyses.
+2. Generate md5 checksums for the fastqs
+3. Upload selected fastqs to the ENA (though R routines not recomended for large numbers of files)
+4. Create a sample submission dataframe, based on the user environmental metadata file, and check/select relevant ENA MixS checklists
+5. Link samples to fastq reads (multiple amplicon assays possible) by constructing ENA EXPERIMENT and RUN files
+6. Convert dataframes to xml format required by the ENA for programatic submission
+7. Submit xmls to ENA (the example only submits to the dev server for obvious reasons)
+8. Populate the environmental metadata file with ENA accession numbers, to enable reproducible coding of subsequent analyses.
 
 # Usage
 You will need an [ENA account](https://www.ebi.ac.uk/ena/submit/sra/#home) to submit sequences. 
