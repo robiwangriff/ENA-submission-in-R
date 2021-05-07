@@ -28,6 +28,6 @@ You should get a pretty speedy submission to the ENA dev server using the exampl
 
 After submission of the xmls a receipt is returned indicating whether the submission is succesful. You may get failed test submissions because the project/samples/runs have already been registered (from your previous attempt)...even with the dev server. Though the dev server is supposed to be purged every day, things seem to hang around for a bit and there doesn't appear to be a way of purging it yourself. On the plus side, this may mean your submission attempt to the dev server has kind of worked.
 
-A final note: be careful with real submissions as erroneous ones are hard to come back from, without renaming sample aliases and even your fastq files - hardly reproducible, and a pain. Always test on the dev server before submitting your samples. Dont try and submit anything that may have been submitted before (eg the test files included here!).
+A final note: be careful with real submissions to the working submission server (dev is fine) as erroneous ones are hard to come back from, without renaming sample aliases and even your fastq files - hardly reproducible, and a pain. Always test on the dev server before submitting your samples. Dont try and submit anything to non-dev that may have been submitted before (eg the test files included here!).
 
 Rob 
