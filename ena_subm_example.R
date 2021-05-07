@@ -7,44 +7,8 @@
 ####################################################################################
 #1. Load and define some variables
 ####################################################################################
-
-	#
-	#Load environmental and sequence associated metadata (we call it an "env" file)
-	#We'll update this as we go along and populate with various submission related fields
-	#After doing this a few times it will become apparent that it is good practice
-	#to pre-populate the env file with various fields which will facilitate ENA submission.
 	
-	###############
-	#Read env
-	#setwd("..../ENA-submission-in-R/")#include your path if neccesary
-	
-	env<-read.csv("env_metadata.csv",stringsAsFactors=F,check.names=F)
-
-	#Load functions
-
-	source("ena_subm_fxns.R") 
-	
-	##############
-	#Define directories which contain reads (eg path to your sequencer output dir).
-	#May well contain more fastq files than you actually want to submit.
-	
-	seq_dir_16S<-"fastq_files_from_sequencer/16S_runs/"
-	seq_dir_ITS<-"fastq_files_from_sequencer/ITS_runs/"
-
-	
-	##############
-	# Create a local ENA submission directory where you can transfer reads to be uploaded
-	# and any other outputs from the submission process
-
-	dir.create("ENA_submission/")# here we are using our working dir. You may want to specify a more relevant path eg a project folder
-	
-	#Define folder paths where you'll transfer only the fastq files you want to submit - 
-	#This directory will be created by the function - it just needs a path here
-
-	upload_dir_16S<-"ENA_submission/16S_upload_fastqs/"
-	upload_dir_ITS<-"ENA_submission/ITS_upload_fastqs/"
-
-	#############
+	#########################################################
 	#Define ENA webin login info
 	#get account if needs https://www.ebi.ac.uk/ena/submit/sra/#registration
 	
@@ -53,7 +17,62 @@
 	ena_user<-"Webin-xxxxx"
 	ena_passwd<-"pxxssxxxd"
 
-	#############
+	#######################################################
+	#set working directory (tut tut)
+	#
+	#If downloaded a zip file
+	#setwd("/where/you/put/extractedzip/ENA-submission-in-R-main/")
+
+	#If cloned github
+	#setwd("/loca/github/dir/ENA-submission-in-R/") #note no "-main"
+	
+	#######################################################
+	#load packages #If needs: install.packages("missing_package")
+	
+	library(fs)
+	library(parallel)
+	library(digest)
+	library(RCurl)
+	library(XML)
+	library(httr)
+	library(jsonlite)
+
+	#####################################################
+	#Load env metadata
+	#Load environmental and sequence associated metadata (we call it an "env" file)
+	#We'll update this as we go along and populate with various submission related fields
+	#After doing this a few times it will become apparent that it is good practice
+	#to pre-populate the env file with various fields which will facilitate ENA submission.
+	
+	env<-read.csv("env_metadata.csv",stringsAsFactors=F,check.names=F)
+
+	####################################################
+	#Load functions
+
+	source("ena_subm_fxns.R") 
+	
+	#######################################################
+	#Define directories which contain reads (eg path to your sequencer output dir).
+	#May well contain more fastq files than you actually want to submit.
+	#For worked example this file is provided:	
+
+	seq_dir_16S<-"fastq_files_from_sequencer/16S_runs/"
+	seq_dir_ITS<-"fastq_files_from_sequencer/ITS_runs/"
+
+	########################################################
+	# Create a local ENA submission directory where you can transfer reads to be uploaded
+	# and any other outputs from the submission process
+
+	dir.create("ENA_submission/")# here we are creating in our working dir. You may want to specify a more relevant path eg a project folder
+	
+	#Define folder paths where you'll transfer only the fastq files you want to submit - 
+	#This directory will be created by the function - it just needs a path here
+
+	upload_dir_16S<-"ENA_submission/16S_upload_fastqs/"
+	upload_dir_ITS<-"ENA_submission/ITS_upload_fastqs/"
+
+
+	######################################################
 	#Define broad details about project
 	#In the example data these are in conveniently found in the env file (or at least some fields which fit the bill), 
 	#but you could also define them here: eg proj_name<-"Microbial communities of habitat X" 
@@ -62,7 +81,7 @@
 	proj_title<-env$"sample_title"[1]
 	proj_desc<-env$"sample_description"[1]
 
-	#############
+	###################################################
 	#Define other key variables here?
 
 	#The most important field which links everything is the sample_alias, ie the unique sample ID.
@@ -73,11 +92,13 @@
 	#The other important columns are the fastq.gz filenames associated with each sample.
 	#If your sequencer appends additional fields (ours does) and you dont actually know
 	#the fastq filenames, the functions below (2a) should sort this. But you still need the
-	#sample IDs as submitted to the sequencer.
+	#sample IDs as submitted to the sequencer. In our lab setup, these are not only the sample
+	#alias, but also include details of location in 96 well PCR plates.
 
 	#In the example env file, since we are dealing with both 16S and ITS amplicon assays
 	#which were carried out on different runs, there are two columns
 	#env$"Sequence ID 16S" and env$"Sequence ID ITS". Make sure such information is present in your env file
+	#These not defined explicitly here but will be defined in the function in 2.
 
 ####################################################################################################################
 #2. Transfer fastq files from seq output directory to local upload directory
@@ -150,7 +171,6 @@
 
 	env$md5_ITSf<-md5s_ITS[,1]
 	env$md5_ITSr<-md5s_ITS[,2]
-
 
 #########################################################################################################
 #5. Create sample metadata files

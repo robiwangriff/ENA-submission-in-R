@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+<SAMPLE_SET>
+  <SAMPLE alias="O-1-1" center_name="UKCEH">
+    <TITLE>metagenome</TITLE>
+    <SAMPLE_NAME>
+      <TAXON_ID>256318</TAXON_ID>
+      <SCIENTIFIC_NAME>metagenome</SCIENTIFIC_NAME>
+      <COMMON_NAME>metagenome</COMMON_NAME>
+    </SAMPLE_NAME>
+    <SAMPLE_ATTRIBUTES>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>project name</TAG>
+        <VALUE>Broadscale and Vent snow+shrub experiment</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>sequencing method</TAG>
+        <VALUE>Illumina MiSeq</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>investigation type</TAG>
+        <VALUE>mimarks-survey</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>collection date</TAG>
+        <VALUE>2019-07-23</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>geographic location (country and/or sea)</TAG>
+        <VALUE>Austria</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>geographic location (latitude)</TAG>
+        <VALUE>46.844833</VALUE>
+        <UNITS>DD</UNITS>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>geographic location (longitude)</TAG>
+        <VALUE>11.023783</VALUE>
+        <UNITS>DD</UNITS>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>soil environmental package</TAG>
+        <VALUE>soil</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>geographic location (depth)</TAG>
+        <VALUE>0.1</VALUE>
+        <UNITS>m</UNITS>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>environment (biome)</TAG>
+        <VALUE>terrestrial biome</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>environment (feature)</TAG>
+        <VALUE>soil</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>environment (material)</TAG>
+        <VALUE>soil</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>geographic location (elevation)</TAG>
+        <VALUE>2304</VALUE>
+        <UNITS>m</UNITS>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>ENA-CHECKLIST</TAG>
+        <VALUE>ERC000022</VALUE>
+      </SAMPLE_ATTRIBUTE>
+    </SAMPLE_ATTRIBUTES>
+  </SAMPLE>
+  <SAMPLE alias="O-1-2" center_name="UKCEH">
+    <TITLE>metagenome</TITLE>
+    <SAMPLE_NAME>
+      <TAXON_ID>256318</TAXON_ID>
+      <SCIENTIFIC_NAME>metagenome</SCIENTIFIC_NAME>
+      <COMMON_NAME>metagenome</COMMON_NAME>
+    </SAMPLE_NAME>
+    <SAMPLE_ATTRIBUTES>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>project name</TAG>
+        <VALUE>Broadscale and Vent snow+shrub experiment</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>sequencing method</TAG>
+        <VALUE>Illumina MiSeq</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>investigation type</TAG>
+        <VALUE>mimarks-survey</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>collection date</TAG>
+        <VALUE>2019-07-23</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>geographic location (country and/or sea)</TAG>
+        <VALUE>Austria</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>geographic location (latitude)</TAG>
+        <VALUE>46.844833</VALUE>
+        <UNITS>DD</UNITS>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>geographic location (longitude)</TAG>
+        <VALUE>11.023783</VALUE>
+        <UNITS>DD</UNITS>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>soil environmental package</TAG>
+        <VALUE>soil</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>geographic location (depth)</TAG>
+        <VALUE>0.1</VALUE>
+        <UNITS>m</UNITS>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>environment (biome)</TAG>
+        <VALUE>terrestrial biome</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>environment (feature)</TAG>
+        <VALUE>soil</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>environment (material)</TAG>
+        <VALUE>soil</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>geographic location (elevation)</TAG>
+        <VALUE>2304</VALUE>
+        <UNITS>m</UNITS>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>ENA-CHECKLIST</TAG>
+        <VALUE>ERC000022</VALUE>
+      </SAMPLE_ATTRIBUTE>
+    </SAMPLE_ATTRIBUTES>
+  </SAMPLE>
+  <SAMPLE alias="O-1-3" center_name="UKCEH">
+    <TITLE>metagenome</TITLE>
+    <SAMPLE_NAME>
+      <TAXON_ID>256318</TAXON_ID>
+      <SCIENTIFIC_NAME>metagenome</SCIENTIFIC_NAME>
+      <COMMON_NAME>metagenome</COMMON_NAME>
+    </SAMPLE_NAME>
+    <SAMPLE_ATTRIBUTES>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>project name</TAG>
+        <VALUE>Broadscale and Vent snow+shrub experiment</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>sequencing method</TAG>
+        <VALUE>Illumina MiSeq</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>investigation type</TAG>
+        <VALUE>mimarks-survey</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>collection date</TAG>
+        <VALUE>2019-07-23</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>geographic location (country and/or sea)</TAG>
+        <VALUE>Austria</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>geographic location (latitude)</TAG>
+        <VALUE>46.844833</VALUE>
+        <UNITS>DD</UNITS>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>geographic location (longitude)</TAG>
+        <VALUE>11.023783</VALUE>
+        <UNITS>DD</UNITS>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>soil environmental package</TAG>
+        <VALUE>soil</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>geographic location (depth)</TAG>
+        <VALUE>0.1</VALUE>
+        <UNITS>m</UNITS>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>environment (biome)</TAG>
+        <VALUE>terrestrial biome</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>environment (feature)</TAG>
+        <VALUE>soil</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>environment (material)</TAG>
+        <VALUE>soil</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>geographic location (elevation)</TAG>
+        <VALUE>2304</VALUE>
+        <UNITS>m</UNITS>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>ENA-CHECKLIST</TAG>
+        <VALUE>ERC000022</VALUE>
+      </SAMPLE_ATTRIBUTE>
+    </SAMPLE_ATTRIBUTES>
+  </SAMPLE>
+</SAMPLE_SET>

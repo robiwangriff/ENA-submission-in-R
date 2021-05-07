@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<EXPERIMENT_SET>
+  <EXPERIMENT alias="O-1-1_16S_exp">
+    <TITLE>Alpine grassland soil microbial data from a climate change and shrub expansion experiment in Tyrol, Austria, July 2019</TITLE>
+    <STUDY_REF refname="Broadscale and Vent snow+shrub experiment"/>
+    <DESIGN>
+      <DESIGN_DESCRIPTION/>
+      <SAMPLE_DESCRIPTOR refname="O-1-1"/>
+      <LIBRARY_DESCRIPTOR>
+        <LIBRARY_NAME>16S</LIBRARY_NAME>
+        <LIBRARY_STRATEGY>AMPLICON</LIBRARY_STRATEGY>
+        <LIBRARY_SOURCE>METAGENOMIC</LIBRARY_SOURCE>
+        <LIBRARY_SELECTION>PCR</LIBRARY_SELECTION>
+        <LIBRARY_LAYOUT>
+          <PAIRED NOMINAL_LENGTH="300" NOMINAL_SDEV="30"/>
+        </LIBRARY_LAYOUT>
+        <LIBRARY_CONSTRUCTION_PROTOCOL/>
+      </LIBRARY_DESCRIPTOR>
+    </DESIGN>
+    <PLATFORM>
+      <ILLUMINA>
+        <INSTRUMENT_MODEL>Illumina MiSeq</INSTRUMENT_MODEL>
+      </ILLUMINA>
+    </PLATFORM>
+  </EXPERIMENT>
+  <EXPERIMENT alias="O-1-2_16S_exp">
+    <TITLE>Alpine grassland soil microbial data from a climate change and shrub expansion experiment in Tyrol, Austria, July 2019</TITLE>
+    <STUDY_REF refname="Broadscale and Vent snow+shrub experiment"/>
+    <DESIGN>
+      <DESIGN_DESCRIPTION/>
+      <SAMPLE_DESCRIPTOR refname="O-1-2"/>
+      <LIBRARY_DESCRIPTOR>
+        <LIBRARY_NAME>16S</LIBRARY_NAME>
+        <LIBRARY_STRATEGY>AMPLICON</LIBRARY_STRATEGY>
+        <LIBRARY_SOURCE>METAGENOMIC</LIBRARY_SOURCE>
+        <LIBRARY_SELECTION>PCR</LIBRARY_SELECTION>
+        <LIBRARY_LAYOUT>
+          <PAIRED NOMINAL_LENGTH="300" NOMINAL_SDEV="30"/>
+        </LIBRARY_LAYOUT>
+        <LIBRARY_CONSTRUCTION_PROTOCOL/>
+      </LIBRARY_DESCRIPTOR>
+    </DESIGN>
+    <PLATFORM>
+      <ILLUMINA>
+        <INSTRUMENT_MODEL>Illumina MiSeq</INSTRUMENT_MODEL>
+      </ILLUMINA>
+    </PLATFORM>
+  </EXPERIMENT>
+  <EXPERIMENT alias="O-1-3_16S_exp">
+    <TITLE>Alpine grassland soil microbial data from a climate change and shrub expansion experiment in Tyrol, Austria, July 2019</TITLE>
+    <STUDY_REF refname="Broadscale and Vent snow+shrub experiment"/>
+    <DESIGN>
+      <DESIGN_DESCRIPTION/>
+      <SAMPLE_DESCRIPTOR refname="O-1-3"/>
+      <LIBRARY_DESCRIPTOR>
+        <LIBRARY_NAME>16S</LIBRARY_NAME>
+        <LIBRARY_STRATEGY>AMPLICON</LIBRARY_STRATEGY>
+        <LIBRARY_SOURCE>METAGENOMIC</LIBRARY_SOURCE>
+        <LIBRARY_SELECTION>PCR</LIBRARY_SELECTION>
+        <LIBRARY_LAYOUT>
+          <PAIRED NOMINAL_LENGTH="300" NOMINAL_SDEV="30"/>
+        </LIBRARY_LAYOUT>
+        <LIBRARY_CONSTRUCTION_PROTOCOL/>
+      </LIBRARY_DESCRIPTOR>
+    </DESIGN>
+    <PLATFORM>
+      <ILLUMINA>
+        <INSTRUMENT_MODEL>Illumina MiSeq</INSTRUMENT_MODEL>
+      </ILLUMINA>
+    </PLATFORM>
+  </EXPERIMENT>
+  <EXPERIMENT alias="O-1-1_ITS_exp">
+    <TITLE>Alpine grassland soil microbial data from a climate change and shrub expansion experiment in Tyrol, Austria, July 2019</TITLE>
+    <STUDY_REF refname="Broadscale and Vent snow+shrub experiment"/>
+    <DESIGN>
+      <DESIGN_DESCRIPTION/>
+      <SAMPLE_DESCRIPTOR refname="O-1-1"/>
+      <LIBRARY_DESCRIPTOR>
+        <LIBRARY_NAME>ITS</LIBRARY_NAME>
+        <LIBRARY_STRATEGY>AMPLICON</LIBRARY_STRATEGY>
+        <LIBRARY_SOURCE>METAGENOMIC</LIBRARY_SOURCE>
+        <LIBRARY_SELECTION>PCR</LIBRARY_SELECTION>
+        <LIBRARY_LAYOUT>
+          <PAIRED NOMINAL_LENGTH="300" NOMINAL_SDEV="30"/>
+        </LIBRARY_LAYOUT>
+        <LIBRARY_CONSTRUCTION_PROTOCOL/>
+      </LIBRARY_DESCRIPTOR>
+    </DESIGN>
+    <PLATFORM>
+      <ILLUMINA>
+        <INSTRUMENT_MODEL>Illumina MiSeq</INSTRUMENT_MODEL>
+      </ILLUMINA>
+    </PLATFORM>
+  </EXPERIMENT>
+  <EXPERIMENT alias="O-1-2_ITS_exp">
+    <TITLE>Alpine grassland soil microbial data from a climate change and shrub expansion experiment in Tyrol, Austria, July 2019</TITLE>
+    <STUDY_REF refname="Broadscale and Vent snow+shrub experiment"/>
+    <DESIGN>
+      <DESIGN_DESCRIPTION/>
+      <SAMPLE_DESCRIPTOR refname="O-1-2"/>
+      <LIBRARY_DESCRIPTOR>
+        <LIBRARY_NAME>ITS</LIBRARY_NAME>
+        <LIBRARY_STRATEGY>AMPLICON</LIBRARY_STRATEGY>
+        <LIBRARY_SOURCE>METAGENOMIC</LIBRARY_SOURCE>
+        <LIBRARY_SELECTION>PCR</LIBRARY_SELECTION>
+        <LIBRARY_LAYOUT>
+          <PAIRED NOMINAL_LENGTH="300" NOMINAL_SDEV="30"/>
+        </LIBRARY_LAYOUT>
+        <LIBRARY_CONSTRUCTION_PROTOCOL/>
+      </LIBRARY_DESCRIPTOR>
+    </DESIGN>
+    <PLATFORM>
+      <ILLUMINA>
+        <INSTRUMENT_MODEL>Illumina MiSeq</INSTRUMENT_MODEL>
+      </ILLUMINA>
+    </PLATFORM>
+  </EXPERIMENT>
+  <EXPERIMENT alias="O-1-3_ITS_exp">
+    <TITLE>Alpine grassland soil microbial data from a climate change and shrub expansion experiment in Tyrol, Austria, July 2019</TITLE>
+    <STUDY_REF refname="Broadscale and Vent snow+shrub experiment"/>
+    <DESIGN>
+      <DESIGN_DESCRIPTION/>
+      <SAMPLE_DESCRIPTOR refname="O-1-3"/>
+      <LIBRARY_DESCRIPTOR>
+        <LIBRARY_NAME>ITS</LIBRARY_NAME>
+        <LIBRARY_STRATEGY>AMPLICON</LIBRARY_STRATEGY>
+        <LIBRARY_SOURCE>METAGENOMIC</LIBRARY_SOURCE>
+        <LIBRARY_SELECTION>PCR</LIBRARY_SELECTION>
+        <LIBRARY_LAYOUT>
+          <PAIRED NOMINAL_LENGTH="300" NOMINAL_SDEV="30"/>
+        </LIBRARY_LAYOUT>
+        <LIBRARY_CONSTRUCTION_PROTOCOL/>
+      </LIBRARY_DESCRIPTOR>
+    </DESIGN>
+    <PLATFORM>
+      <ILLUMINA>
+        <INSTRUMENT_MODEL>Illumina MiSeq</INSTRUMENT_MODEL>
+      </ILLUMINA>
+    </PLATFORM>
+  </EXPERIMENT>
+</EXPERIMENT_SET>

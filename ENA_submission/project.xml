@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<PROJECT_SET>
+  <PROJECT alias="blah">
+    <TITLE>Alpine grassland soil microbial data from a climate change and shrub expansion experiment in Tyrol, Austria, July 2019</TITLE>
+    <DESCRIPTION>Data comprise soil microbial data collected during from a climate change and shrub expansion experiment in Tyrol, Austria. The experiment was part of the NERC project NE/N009452/1. Soil microbial data includes bacterial (16S Small subunit ribosomal RNA) and fungal (internal transcribed spacer region 2) amplicon sequences obtained via Illumina MiSeq sequencing.</DESCRIPTION>
+    <SUBMISSION_PROJECT>
+      <SEQUENCING_PROJECT/>
+    </SUBMISSION_PROJECT>
+  </PROJECT>
+</PROJECT_SET>
