@@ -2,7 +2,7 @@
 Scripts under development for submission of amplicon sequence data to the ENA using R.
 
 # Why submit to ENA using R?
-Submitting sequences to the ENA is quite an involved process, and it can take time. There are a variety of ways to submit, but I'm unaware of any routines for doing it in R. Since most researchers working on amplicon sequence data use R, it makes sense to integrate sequence submission into R workflows.
+Submitting sequences to the ENA is quite an involved process, and it can take time. There are a variety of ways to submit to the [ENA](https://ena-docs.readthedocs.io/en/latest/submit/general-guide.html), but I'm unaware of any routines for doing it in R. Since most researchers working on amplicon sequence data use R, it makes sense to integrate sequence submission into R workflows.
 Personally, in the past I have tended to muddle through the submission process, 50:50 R/fiddling with spreadsheets. Formalising it all in R at least allows me to reproduce my mistakes (and hopefully improve the process). Contribs and feedback most welcome.
 
 # The functions:
