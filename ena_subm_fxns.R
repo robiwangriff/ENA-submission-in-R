@@ -1,10 +1,6 @@
 #################################################################
 ######ENA Upload Functions
 
-####PASTE ALL BELOW INTO YOUR R SESSION
-
-
-
 #############################################################################
 #Helper function: get_f_r_names
 
@@ -27,9 +23,6 @@
 # The following function takes a vector of sequence names (eg seq_id_16S or seq_id_ITS in envfile) 
 # and outputs a two column dataframe of f and r read names. You may want to append these to your envfile
 
-#paste this function into your R terminal
-
-#start paste
 get_f_r_names<-function(seq_id_from_env,seq_dir){
 
 #get sequence names of all files in the original sequence file directory
@@ -57,7 +50,7 @@ r<-out[match(seq_id_from_env,out$ID),]$name_read2
 
 return(data.frame(f,r,stringsAsFactors=FALSE))
 }
-#end paste
+
 
 #example usage:
 #f_r_reads<-get_f_r_names(seq_id_from_env=env$"Sequence ID 16S",seq_dir=seq_dir)
@@ -72,9 +65,6 @@ return(data.frame(f,r,stringsAsFactors=FALSE))
 #copy the selected fastq files (ie those files associated with samples in env file) from your sequencer output directory
 #to your local ENA upload directory
 
-#paste this function into your R terminal:
-
-#start paste
 copy_seq_files<-function(f_names,r_names,seq_dir,ena_upload_dir){
 myfiles<-c(c(f_names,r_names))#create vector of the required f and r fastqs
 myfiles1<-paste(seq_dir,myfiles,sep="")#add in path to directory where these files are
@@ -82,7 +72,7 @@ dir.create(file.path(ena_upload_dir), showWarnings = FALSE)
 require(fs)
 file_copy(myfiles1, ena_upload_dir)#copy selected files to ENA upload directory
 }
-#end paste
+
 
 #example usage: be careful you are about to copy many files. Can take time. Can overwrite (I think)
 #copy_seq_files(f_names=f_r_reads[,1],r_names=f_r_reads[,2],seq_dir=seq_dir,ena_upload_dir=ena_upload_dir)
@@ -97,7 +87,7 @@ file_copy(myfiles1, ena_upload_dir)#copy selected files to ENA upload directory
 # Create function using the forward and reverse sequence names to generate a two column data.frame
 # containing the md5 codes. Generating md5 codes is slow (several seconds per file) so this is parallelised.
 
-#start paste
+
 md5_gen<-function(f_names,r_names,ena_upload_dir){
 require(parallel)
 require(digest)
@@ -112,7 +102,7 @@ md5r<-parSapply(cl,paste0(ena_upload_dir,r_names), digest,file=TRUE, algo="md5")
 stopCluster(cl)
 
 return(data.frame(md5f,md5r,stringsAsFactors=FALSE))}
-#end paste
+
 
 #example use
 #md5s<-md5_gen(f_names=f_r_reads[,1],r_names=f_r_reads[,2],ena_upload_dir)
