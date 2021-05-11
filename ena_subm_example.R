@@ -346,7 +346,7 @@ samp_info$"UNIT_geographic location (elevation)"<- "m"           #unit options:m
 	##############################################################
 	#Create Project xml with basic title and description of project
 
-	proj_xml<-create_proj_xml(proj_name="blah",proj_title,proj_desc)
+	proj_xml<-create_proj_xml(proj_name,proj_title,proj_desc)
 	saveXML(proj_xml, file="ENA_submission/project.xml")
 
 	##################################################################################################
