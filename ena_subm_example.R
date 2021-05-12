@@ -54,7 +54,7 @@
 	#######################################################
 	#Define directories which contain reads (eg path to your sequencer output dir).
 	#May well contain more fastq files than you actually want to submit.
-	#For worked example this file is provided:	
+	#For worked example these dirs are provided here:	
 
 	seq_dir_16S<-"fastq_files_from_sequencer/16S_runs/" #the terminating "/" is essential
 	seq_dir_ITS<-"fastq_files_from_sequencer/ITS_runs/"
@@ -63,7 +63,7 @@
 	# Create a local ENA submission directory where you can transfer reads to be uploaded
 	# and any other outputs from the submission process
 
-	dir.create("ENA_submission/")# here we are creating in our working dir. You may want to specify a more relevant path eg a project folder
+	dir.create("ENA_submission/")# here we are creating in our working dir. You may want to specify a more relevant path for your own submissions. eg a project folder
 	
 	#Define folder paths where you'll transfer only the fastq files you want to submit - 
 	#This directory will be created by the function - it just needs a path here
@@ -98,7 +98,7 @@
 	#In the example env file, since we are dealing with both 16S and ITS amplicon assays
 	#which were carried out on different runs, there are two columns
 	#env$"Sequence ID 16S" and env$"Sequence ID ITS". Make sure such information is present in your env file
-	#These not defined explicitly here but will be defined in the function in 2.
+	#These not defined explicitly here but will be use in the function in 2.
 
 ####################################################################################################################
 #2. Transfer fastq files from seq output directory to local upload directory
@@ -134,18 +134,17 @@
 	copy_seq_files(f_names=f_r_reads_ITS[,1],r_names=f_r_reads_ITS[,2],seq_dir=seq_dir_ITS,ena_upload_dir=upload_dir_ITS)
 
 
-	#These files can now be uploaded to the ena, using an external program (eg winscp) prior to running next
-	#steps. If really want to do file transfer in R (not recomended) carry on to (3.) below. Otherwise go to (4.) 
-	#whilst your sequences upload via winscp or somesuch.
+	#These files can now be uploaded to the ena, either in R or using an external program (eg winscp) prior to running next
+	#steps. If really want to do file transfer in R  carry on to (3.) below. Otherwise go to (4.) whilst your sequences upload via winscp or somesuch.
 
 
 #########################################################################################################
 #3. Upload fastqs to ENA...in R
 #########################################################################################################
 
-#Note the below should work for transfer of low numbers of files. With over 400 files (eg 200 samples x 2 with F and R reads)
-#the following fails for some reason and I havent investigated upload continuation,should it fail. Additionally, the R session
-#will be out of use whilst it transfers files (which will be slow). For these reasons whilst the code is provided here, I 
+#Note the below will work for the example fastq files, but we have observed failures on some machines/occasions,
+#and I havent investigated upload continuation should it fail. Additionally, the R session
+#will be out of use whilst it transfers files (which will likely be slow). For these reasons whilst the code is provided here, I 
 #recomend using a different file transfer approach (eg winscp), and using your R session for generating the md5 codes (next step)
 
 
@@ -161,7 +160,7 @@
 #The following generates them within R, using the f and r fastq name field to reference.
 #You should then add these to your env file for completeness.
 #Note md5 generating using the function below is slow (can be a few seconds per file, depending on size).
-#Even with parallelisation in the function, expect this to hog your R session for a bit. Could do with a progress bar.
+#Even with parallelisation in the function, expect this to hog your R session for a bit depeending on n processor available. Could do with a progress bar.
 
 	md5s_16S<-md5_gen(f_names=f_r_reads_16S[,1],r_names=f_r_reads_16S[,2],upload_dir_16S)
 	md5s_ITS<-md5_gen(f_names=f_r_reads_ITS[,1],r_names=f_r_reads_ITS[,2],upload_dir_ITS)
