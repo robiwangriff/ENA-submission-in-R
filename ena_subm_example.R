@@ -56,7 +56,7 @@
 	#May well contain more fastq files than you actually want to submit.
 	#For worked example this file is provided:	
 
-	seq_dir_16S<-"fastq_files_from_sequencer/16S_runs/"
+	seq_dir_16S<-"fastq_files_from_sequencer/16S_runs/" #the terminating "/" is essential
 	seq_dir_ITS<-"fastq_files_from_sequencer/ITS_runs/"
 
 	########################################################
@@ -68,7 +68,7 @@
 	#Define folder paths where you'll transfer only the fastq files you want to submit - 
 	#This directory will be created by the function - it just needs a path here
 
-	upload_dir_16S<-"ENA_submission/16S_upload_fastqs/"
+	upload_dir_16S<-"ENA_submission/16S_upload_fastqs/" #the terminating "/" is essential
 	upload_dir_ITS<-"ENA_submission/ITS_upload_fastqs/"
 
 
