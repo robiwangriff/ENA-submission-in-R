@@ -447,6 +447,7 @@ samp_info$"UNIT_geographic location (elevation)"<- "m"           #unit options:m
 
 ####add accessions to env file and export
 
+##################################################################################################
 #parse xml RUN and EXP ("RE") receipt to a dataframe to obtain run and experiment accession numbers
 
 RE_df<-RE_receipt_to_df(RE_receipt_xml)
@@ -458,6 +459,29 @@ env$exp_acc_16S<-RE_df[match(env$exp_alias_16S,RE_df$exp_alias),]$exp_acc
 
 env$run_acc_ITS<-RE_df[match(env$run_alias_ITS,RE_df$run_alias),]$run_acc
 env$exp_acc_ITS<-RE_df[match(env$exp_alias_ITS,RE_df$exp_alias),]$exp_acc 
+
+##################################################################################################
+#parse xml sample ("samp") receipt to a dataframe to obtain sample accession numbers (there are two of these...)
+
+samp_df<-samp_receipt_to_df(samp_receipt_xml)
+
+# Add accessions to env file by lookup against the run_alias and exp_alias created in 6a
+
+env$samp_acc<-samp_df[match(sample_alias,samp_df$samp_alias),]$samp_acc 
+env$ext_id_acc<-samp_df[match(sample_alias,samp_df$samp_alias),]$ext_id_acc
+
+##################################################################################################
+#parse xml project("proj") submission receipt to get project accession number(s)
+
+#no need for function, just populate env directly
+
+proj_nodes<-getNodeSet(xmlParse(proj_receipt_xml), "//PROJECT")
+EXT_ID_nodes<-getNodeSet(xmlParse(proj_receipt_xml), "//EXT_ID")
+
+env$proj_acc<-xmlGetAttr(proj_nodes[[1]],"accession")
+env$subm_acc<-xmlGetAttr(EXT_ID_nodes[[1]],"accession")
+
+
 
 
 #write.csv(env,"ENA_submission/env_with_seq_accessions.csv")

@@ -421,3 +421,25 @@ exp_alias<-lapply(exp_nodes, xmlGetAttr, "alias")
 df<-data.frame( run_acc = unlist(run_acc),run_alias = unlist(run_alias),exp_acc=unlist(exp_acc),exp_alias=unlist(exp_alias))
 return(df)
 }
+
+
+#########################################################################################
+#function: samp_receipt_to_df
+
+#parse xml sample ("samp") receipt to obtain sample accession numbers
+
+samp_receipt_to_df<-function(samp_receipt_xml){
+
+doc_xml <- xmlParse(samp_receipt_xml)
+samp_nodes<- getNodeSet(doc_xml, "//SAMPLE")
+ext_id_nodes<- getNodeSet(doc_xml, "//EXT_ID")
+
+samp_acc <- lapply(samp_nodes, xmlGetAttr, "accession")
+ext_id_acc <- lapply(ext_id_nodes, xmlGetAttr, "accession")
+
+samp_alias<-lapply(samp_nodes, xmlGetAttr, "alias")
+
+
+df<-data.frame( samp_acc = unlist(samp_acc),samp_alias = unlist(samp_alias),ext_id_acc=unlist(ext_id_acc))
+return(df)
+}
