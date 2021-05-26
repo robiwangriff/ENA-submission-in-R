@@ -229,7 +229,7 @@
 samp_info$"project name"<-env$"Project name"              #mandatory
 samp_info$"sequencing method"<-"Illumina MiSeq"               #mandatory
 samp_info$"investigation type"<-"mimarks-survey"             #mandatory
-samp_info$"collection date"<-as.character(as.Date(as.character(env$sampling_date), format = "%d/%m/%Y") )             #mandatory
+samp_info$"collection date"<-as.character(as.Date(as.character(env$sampling_date), format = "%d/%m/%Y") )             #mandatory #Date needs to be yyyy-mm-dd
 samp_info$"geographic location (country and/or sea)"<-"Austria"              #mandatory
 samp_info$"geographic location (latitude)"<-env$lat               #mandatory
 samp_info$"geographic location (longitude)"<-env$long               #mandatory
