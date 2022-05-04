@@ -67,6 +67,12 @@ return(data.frame(f,r,stringsAsFactors=FALSE))
 
 copy_seq_files<-function(f_names,r_names,seq_dir,ena_upload_dir){
 myfiles<-c(c(f_names,r_names))#create vector of the required f and r fastqs
+
+#remove NAs and output notification
+
+if (any(is.na(myfiles))) {print("Alert:The dataframe of sequence names contains NAs. Check this is intended.")}
+myfiles<-na.omit(myfiles)
+
 myfiles1<-paste(seq_dir,myfiles,sep="")#add in path to directory where these files are
 dir.create(file.path(ena_upload_dir), showWarnings = FALSE)
 require(fs)
@@ -74,7 +80,7 @@ file_copy(myfiles1, ena_upload_dir)#copy selected files to ENA upload directory
 }
 
 
-#example usage: be careful you are about to copy many files. Can take time. Can overwrite (I think)
+#example usage: be careful you are about to copy many files. Can take time, will fail if sequence files already exist in target dir.
 #copy_seq_files(f_names=f_r_reads[,1],r_names=f_r_reads[,2],seq_dir=seq_dir,ena_upload_dir=ena_upload_dir)
 
 
