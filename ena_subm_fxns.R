@@ -93,21 +93,52 @@ file_copy(myfiles1, ena_upload_dir)#copy selected files to ENA upload directory
 # Create function using the forward and reverse sequence names to generate a two column data.frame
 # containing the md5 codes. Generating md5 codes is slow (several seconds per file) so this is parallelised.
 
+#new version handles missing files, but slower: see below for old
 
 md5_gen<-function(f_names,r_names,ena_upload_dir){
 require(parallel)
 require(digest)
 
+digest2<-function(x){
+if(file.exists(x)==FALSE){result<-NA}
+else{result<-digest(x,file=TRUE, algo="md5")}
+return(result)
+}
+
+
 n.cores <- detectCores()
 cl <- makeCluster(n.cores)
-md5f<-parSapply(cl,paste0(ena_upload_dir,f_names), digest,file=TRUE, algo="md5")
+parallel::clusterExport(cl, c("digest2","digest"), env = environment())
+md5f<-parSapply(cl,paste0(ena_upload_dir,f_names), digest2)
+	
 stopCluster(cl)
 
 cl <- makeCluster(n.cores)
-md5r<-parSapply(cl,paste0(ena_upload_dir,r_names), digest,file=TRUE, algo="md5")
+parallel::clusterExport(cl, c("digest2","digest"), env = environment())
+md5r<-parSapply(cl,paste0(ena_upload_dir,r_names),digest2 )
+
 stopCluster(cl)
 
 return(data.frame(md5f,md5r,stringsAsFactors=FALSE))}
+
+
+
+
+#old version:
+#md5_gen<-function(f_names,r_names,ena_upload_dir){
+#require(parallel)
+#require(digest)
+
+#n.cores <- detectCores()
+#cl <- makeCluster(n.cores)
+#md5f<-parSapply(cl,paste0(ena_upload_dir,f_names), digest,file=TRUE, algo="md5")
+#stopCluster(cl)
+
+#cl <- makeCluster(n.cores)
+#md5r<-parSapply(cl,paste0(ena_upload_dir,r_names), digest,file=TRUE, algo="md5")
+#stopCluster(cl)
+
+#return(data.frame(md5f,md5r,stringsAsFactors=FALSE))}
 
 
 #example use
@@ -132,7 +163,7 @@ r_upload<-function(f_names,r_names,ena_upload_dir,ena_user,ena_passwd){
 require(RCurl)
 
 #make a vector containing all the files you want to upload
-files2upload_A<-c(f_names,r_names)
+files2upload_A<-na.omit(c(f_names,r_names))
 files2upload_B<-paste0(ena_upload_dir,files2upload_A)
 
 files2upload=data.frame(files2upload_A, files2upload_B, stringsAsFactors = F)
