@@ -32,4 +32,3 @@ After xml submission a receipt is returned indicating whether the submission is 
 
 A final note: be careful with real submissions to the working submission server (dev is fine) as erroneous ones are hard to come back from, without renaming sample aliases and even your fastq files - hardly reproducible, and a pain. Always test on the dev server before submitting your samples. Dont try and submit anything to non-dev that may have been submitted before (eg the test files included here!).
 
-Rob 
