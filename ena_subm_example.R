@@ -129,10 +129,13 @@
 
 	# For whatever reason you may have samples in your metadata but no sequences.
 	# The above function should alert you to this, as subsequent routines will not work
-	# If you get this alert, now is a good time to subset your env file to exclude these samples
+	# If you get this alert, subset your env file to exclude these samples, and re-run get_f_r_names
 
 	#eg
 	#env<-env[!is.na(env$"16Sf"),]
+	#function: seq_id_from_env
+	#f_r_reads_16S<-get_f_r_names(seq_id_from_env=env$"Sequence ID 16S",seq_dir=seq_dir_16S)
+	#f_r_reads_ITS<-get_f_r_names(seq_id_from_env=env$"Sequence ID ITS",seq_dir=seq_dir_ITS)
 
 	#IF this occurs extra merging steps will be required at the end of the process to populate 
 	#the original metadata file with relevant ENA accessions 
