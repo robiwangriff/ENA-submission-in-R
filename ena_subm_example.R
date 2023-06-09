@@ -5,7 +5,7 @@
 #Will be simpler for one amplicon.
 
 ####################################################################################
-#1. Load and define some variables
+#1. Load env metadata, libraries and define some variables
 ####################################################################################
 	
 	#########################################################
@@ -85,7 +85,7 @@
 	#Define other key variables here?
 
 	#The most important field which links everything is the sample_alias, ie the unique sample ID.
-	#In the example env file this is (somewhat clumsily):
+	#In the example env file this is:
 
 	sample_alias=env$"Sample ID for sequencing"
 
@@ -101,7 +101,7 @@
 	#These not defined explicitly here but will be use in the function in 2.
 
 ####################################################################################################################
-#2. Transfer fastq files from seq output directory to local upload directory
+#2. Transfer selected fastq files from seq output directory to local upload directory
 ####################################################################################################################
 	
 	###########################################################################
@@ -142,10 +142,10 @@
 #3. Upload fastqs to ENA...in R
 #########################################################################################################
 
-#Note the below will work for the example fastq files, but we have observed failures on some machines/occasions,
+#Note the below R functions for transfer will work for the example fastq files, but we have observed failures on some machines/occasions,
 #and I havent investigated upload continuation should it fail. Additionally, the R session
 #will be out of use whilst it transfers files (which will likely be slow). For these reasons whilst the code is provided here, I 
-#recomend using a different file transfer approach (eg winscp), and using your R session for generating the md5 codes (next step)
+#recommend using a different file transfer approach (eg winscp), and using your R session for generating the md5 codes (next step)
 
 
 	r_upload(f_r_reads_16S[,1],f_r_reads_16S[,2],upload_dir_16S,ena_user,ena_passwd)
@@ -221,7 +221,7 @@
 	#could cause a submission failure. If in doubt, dont submit it, as your env file which goes with your paper/
 	#to some other repo will have all the relevant metadata...even if one day the machines cant find it.
 
-	samp_info<-build_sample_df(sample_alias=env$"Sample ID for sequencing",select.cl="ERC000022",all_fields=FALSE)
+	samp_info<-build_sample_df(sample_alias=sample_alias,select.cl="ERC000022",all_fields=FALSE)
 
 	#The function will print something like this, allowing you to copy it into your editor, and populate, then run in terminal.
 	#more hints below
