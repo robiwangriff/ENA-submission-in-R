@@ -124,6 +124,23 @@
 	env$"ITSf"<-f_r_reads_ITS$f
 	env$"ITSr"<-f_r_reads_ITS$r
 
+	######################################################################
+	#NOTE on missing sequence files
+
+	# For whatever reason you may have samples in your metadata but no sequences.
+	# The above function should alert you to this, as subsequent routines will not work
+	# If you get this alert, now is a good time to subset your env file to exclude these samples
+
+	#eg
+	#env<-env[!is.na(env$"16Sf"),]
+
+	#IF this occurs extra merging steps will be required at the end of the process to populate 
+	#the original metadata file with relevant ENA accessions 
+	
+	# I've not considered an approach to deal with what happens if you have eg 16S reads but some missing ITS reads.
+	# In such cases all samples will still need to be registered with the ENA.
+	# will probably just require better error handling in the functions (tryCatch()) #NOT DONE
+
 
 	######################################################################
 	#b. Transfer selected files to local ENA upload directory
