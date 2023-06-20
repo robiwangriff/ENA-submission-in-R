@@ -241,7 +241,7 @@
 	#could cause a submission failure. If in doubt, dont submit it, as your env file which goes with your paper/
 	#to some other repo will have all the relevant metadata...even if one day the machines cant find it.
 
-	samp_info<-build_sample_df(sample_alias=sample_alias,select.cl="ERC000022",all_fields=FALSE)
+	samp_info<-build_sample_df(sample_alias=sample_alias,select.cl="ERC000022",all_fields=FALSE,tax_id="256318", scientific_name="metagenome")
 
 	#The function will print something like this, allowing you to copy it into your editor, and populate, then run in terminal.
 	#more hints below
