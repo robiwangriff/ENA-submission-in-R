@@ -203,7 +203,7 @@
 	############################################################################
 	#a. Select a checklist appropriate for your samples
 	require(jsonlite)
-	checklists<-fromJSON("https://submission.ebi.ac.uk/api/checklists")
+	checklists<-fromJSON("https://submission.ebi.ac.uk/api/checklists") #NOTE 2023 this no longer works, refer to web checklists
 	data.frame(cl.id=checklists$"_embedded"$checklists$id,cl.desc=checklists$"_embedded"$checklists$displayName)
 
 	select.cl<-"ERC000011" #not listed above (?) but the default checklist with no mandatory criteria (not recomended)
@@ -245,6 +245,8 @@
 
 	#The function will print something like this, allowing you to copy it into your editor, and populate, then run in terminal.
 	#more hints below
+
+#NOTE 2023 the field names identified below have changed. Check "samp_info" for up to date required fields.
 
 samp_info$"project name"<-env$"Project name"              #mandatory
 samp_info$"sequencing method"<-"Illumina MiSeq"               #mandatory
@@ -313,12 +315,16 @@ samp_info$"UNIT_geographic location (elevation)"<- "m"           #unit options:m
 
 	#function: make_reads_info
 	#It is barely a function, but conveniently fills in a few fields. Check them!
+	# In the example below it is miseq amplicons, but you may have metagenomes.
+	# Check https://ena-docs.readthedocs.io/en/latest/submit/reads/webin-cli.html#source for permitted values
 
-	reads_info_16S<-make_reads_info(library_name="16S",sample_alias=env$"Sample ID for sequencing",
+	reads_info_16S<-make_reads_info(library_name="16S",sample_alias=env$"Sample ID for sequencing", instrument_model="Illumina MiSeq",
+library_source="METAGENOMIC",library_selection="PCR",library_strategy="AMPLICON",insert_size="300",
 	f_names=env$"16Sf",r_names=env$"16Sr",md5f=env$"md5_16Sf",md5r=env$"md5_16Sr")
 
-	reads_info_ITS<-make_reads_info(library_name="ITS",sample_alias=env$"Sample ID for sequencing",
-	f_names=env$"ITSf",r_names=env$"ITSr",md5f=env$"md5_ITSf",md5r=env$"md5_ITSr")
+	reads_info_ITS<-make_reads_info(library_name="ITS",sample_alias=env$"Sample ID for sequencing",instrument_model="Illumina MiSeq",
+library_source="METAGENOMIC",library_selection="PCR",library_strategy="AMPLICON",
+insert_size="300", f_names=env$"ITSf",r_names=env$"ITSr",md5f=env$"md5_ITSf",md5r=env$"md5_ITSr")
 
 	#No need for "_16S" if only one amplicon
 
