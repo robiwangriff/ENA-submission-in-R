@@ -203,7 +203,7 @@
 	############################################################################
 	#a. Select a checklist appropriate for your samples
 	require(jsonlite)
-	checklists<-fromJSON("https://submission.ebi.ac.uk/api/checklists") #NOTE 2023 this no longer works, refer to web checklists
+	checklists<-fromJSON("https://submission.ebi.ac.uk/api/checklists") #NOTE 2023 this no longer works, refer to web checklists (https://www.ebi.ac.uk/ena/browser/checklists)
 	data.frame(cl.id=checklists$"_embedded"$checklists$id,cl.desc=checklists$"_embedded"$checklists$displayName)
 
 	select.cl<-"ERC000011" #not listed above (?) but the default checklist with no mandatory criteria (not recomended)
