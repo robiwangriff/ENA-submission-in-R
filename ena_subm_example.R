@@ -18,7 +18,7 @@
 	ena_passwd<-"pxxssxxxd"
 
 	#######################################################
-	#set working directory (tut tut)
+	#set working directory 
 	#
 	#If downloaded a zip file
 	#setwd("/where/you/put/extractedzip/ENA-submission-in-R-main/")
@@ -164,7 +164,7 @@
 
 #Note the below R functions for transfer will work for the example fastq files, but we have observed failures on some machines/occasions,
 #and I havent investigated upload continuation should it fail. Additionally, the R session
-#will be out of use whilst it transfers files (which will likely be slow). For these reasons whilst the code is provided here, I 
+#will be out of use whilst it transfers files (which will be slow). For these reasons whilst the code is provided here, I 
 #recommend using a different file transfer approach (eg winscp), and using your R session for generating the md5 codes (next step)
 
 
@@ -237,20 +237,19 @@
 	#and conveniently prints out some commands to help you populate your output samp_info dataframe. If a checklist FIELD
 	#requires units to be specified, columns will be created using the the field name suffixed with "_UNITS".
 	#You can also add any other fields from your env file when running the function, even if they not in the checklist.
-	#Be careful though with (totally normal) missing data in checklist fields. "NA" (or other null designations) in any sample fields
-	#could cause a submission failure. If in doubt, dont submit it, as your env file which goes with your paper/
-	#to some other repo will have all the relevant metadata...even if one day the machines cant find it.
+	#Be careful though with missing data in checklist fields amd ensure "NA" (or other null designations) in any sample fields
+	#are compatible with the checklist (https://www.ebi.ac.uk/ena/browser/checklists). 
 
 	samp_info<-build_sample_df(sample_alias=sample_alias,select.cl="ERC000022",all_fields=FALSE,tax_id="256318", scientific_name="metagenome")
 
 	#The function will print something like this, allowing you to copy it into your editor, and populate, then run in terminal.
 	#more hints below
 
-#NOTE 2023 the field names identified below have changed. Check "samp_info" for up to date required fields.
+#NOTE 2023 the field names identified below have changed. Check "samp_info" and the web checklist for up to date required fields.
 
 samp_info$"project name"<-env$"Project name"              #mandatory
-samp_info$"sequencing method"<-"Illumina MiSeq"               #mandatory
-samp_info$"investigation type"<-"mimarks-survey"             #mandatory
+#samp_info$"sequencing method"<-"Illumina MiSeq"     #no longer req?      
+#samp_info$"investigation type"<-"mimarks-survey"             #no longer req? 
 samp_info$"collection date"<-as.character(as.Date(as.character(env$sampling_date), format = "%d/%m/%Y") )             #mandatory #Date needs to be yyyy-mm-dd
 samp_info$"geographic location (country and/or sea)"<-"Austria"              #mandatory
 samp_info$"geographic location (latitude)"<-env$lat               #mandatory
