@@ -185,10 +185,10 @@ return(df)
 #creates a sample_info dataframe, which will need populating manually based on user env file
 
 build_sample_df<-function(sample_alias,tax_id="256318", scientific_name="metagenome",select.cl,all_fields=TRUE,
-common_name="metagenome",sample_title="metagenome",...){
+sample_title=sample_alias,...){
 
 df_core<-data.frame("sample_alias"=sample_alias,"tax_id"=tax_id,"scientific_name"=scientific_name,
-"common_name"=common_name,"sample_title"=sample_title,stringsAsFactors=FALSE,...)
+"sample_title"=sample_title,stringsAsFactors=FALSE,...)
 
 df_cl<-cl_as_df(select.cl)
 if(all_fields){
