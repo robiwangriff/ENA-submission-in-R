@@ -255,7 +255,7 @@ samp_info_no_units<-samp_info[,!names(samp_info)%in%selcols]
 #create attributes node
 samp_attrs = newXMLNode("SAMPLE_ATTRIBUTES",parent = samp) 
 #loop over and populate new attributes for each column
-for (j in 6:ncol(samp_info_no_units)){
+for (j in 5:ncol(samp_info_no_units)){
 samp_attr<-newXMLNode("SAMPLE_ATTRIBUTE",parent = samp_attrs)
 tag<-newXMLNode("TAG",names(samp_info_no_units)[j],parent = samp_attr) 
 val<-newXMLNode("VALUE",samp_info_no_units[i,j],parent = samp_attr) 
